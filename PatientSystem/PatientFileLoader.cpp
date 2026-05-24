@@ -9,6 +9,7 @@
 #include "Patient.h"
 #include "Vitals.h"
 
+
 using namespace std;
 
 
@@ -22,4 +23,17 @@ std::vector<Patient*> PatientFileLoader::loadPatientFile(const std::string& file
     }
 
     return patients;
+}
+
+void PatientFileLoader::initialiseConnection()
+{
+    // pretend this initialises a database connection
+}
+
+void PatientFileLoader::loadPatients(std::vector<Patient*>& patientIn) {
+   
+}
+
+void PatientFileLoader::closeConnection() {
+
 }
