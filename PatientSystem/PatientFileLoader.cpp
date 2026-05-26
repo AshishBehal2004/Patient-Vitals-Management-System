@@ -35,7 +35,6 @@ std::vector<Patient*> PatientFileLoader::loadPatientFile(const std::string& file
                 else {
                     temp_record.push_back(temp);
                     temp.clear();
-
                 }
                 i++;
             }
@@ -56,7 +55,20 @@ std::vector<Patient*> PatientFileLoader::loadPatientFile(const std::string& file
             }
             stored_name.push_back(temp_string);
             temp_record.push_back(temp);
-            Patient* temp_patient = new Patient(temp_record[1],temp_record[2], temp_record[3]);
+            
+            tm tm = {};
+
+            istringstream ss(temp_record[2]);
+            ss >> get_time(&tm, "%d-%m-%Y");
+
+            time_t date = mktime(&tm);
+            Patient* temp_patient = new Patient(stored_name[1], stored_name[0], tm);
+            //std::cout << stored_name[0] << " "<<  stored_name[1];
+
+            patients.push_back(temp_patient);
+            temp_patient->addDiagnosis(temp_record[3]);
+            //temp_patient->addVitals(temp_record[4]);
+            
         }
         inFile.close();
     }

@@ -7,7 +7,7 @@
 #include "Patient.h"
 #include "PatientDatabaseLoader.h"
 #include "Vitals.h"
-
+#include "PatientFileLoader.h"
 #include "GPNotificationSystemFacade.h"
 #include "HospitalAlertSystemFacade.h"
 
@@ -15,7 +15,7 @@ using namespace std;
 
 
 PatientManagementSystem::PatientManagementSystem() :
-	_patientDatabaseLoader(std::make_unique<PatientDatabaseLoader>()),
+	_patientDatabaseLoader(std::make_unique<PatientFileLoader>("patients.txt")),
 	_hospitalAlertSystem(std::make_unique<HospitalAlertSystemFacade>()),
 	_gpNotificationSystem(std::make_unique<GPNotificationSystemFacade>())
 {
