@@ -38,13 +38,19 @@ std::vector<Patient*> PatientFileLoader::loadPatientFile(const std::string& file
                 }
                 i++;
             }
-            char name_separator = ',';
+          
+            
+           
+            char comma_separator = ',';
             int j = 0;
+            int k = 0;
             vector<string> stored_name;
+            vector<string> stored_vitals;
+            string temp_vitals;
             string temp_string;
             while (j != temp_record[1].size()) {
 
-                if (temp_record[1][j] != name_separator) {
+                if (temp_record[1][j] != comma_separator) {
                     temp_string += temp_record[1][j];
                 }
                 else {
@@ -53,8 +59,30 @@ std::vector<Patient*> PatientFileLoader::loadPatientFile(const std::string& file
                 }
                 j++;
             }
-            stored_name.push_back(temp_string);
+            
+            if (!temp_record[4].empty()) {
+                while (k != temp_record[4].size()) {
+
+                    if (temp_record[4][k] != comma_separator) {
+                        temp_vitals += temp_record[4][k];
+                    }
+                    else {
+                        stored_vitals.push_back(temp_vitals);
+                        temp_vitals.clear();
+                    }
+                    k++;
+                }
+            }
+            
             temp_record.push_back(temp);
+            cout << "---" << temp_record[4] << "---";
+            stored_name.push_back(temp_string);
+            
+            stored_vitals.push_back(temp_vitals);
+            
+            
+
+
             
             tm tm = {};
 
@@ -63,11 +91,14 @@ std::vector<Patient*> PatientFileLoader::loadPatientFile(const std::string& file
 
             time_t date = mktime(&tm);
             Patient* temp_patient = new Patient(stored_name[1], stored_name[0], tm);
-            //std::cout << stored_name[0] << " "<<  stored_name[1];
+            Vitals* patient_vitals = new Vitals(stof(stored_vitals[0]), stoi(stored_vitals[1]), stoi(stored_vitals[2]), stoi(stored_vitals[3]));
 
             patients.push_back(temp_patient);
             temp_patient->addDiagnosis(temp_record[3]);
-            //temp_patient->addVitals(temp_record[4]);
+            if (!stored_vitals.empty()) {
+                temp_patient->addVitals(patient_vitals);
+            }
+            
             
         }
         inFile.close();
