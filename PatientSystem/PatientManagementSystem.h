@@ -40,5 +40,9 @@ protected:
 
 	std::unique_ptr<AbstractPatientDatabaseLoader> _patientDatabaseLoader;
 
+	std::unique_ptr<AbstractPatientDatabaseLoader> patientFromdatabase;
+	std::unique_ptr<AbstractPatientDatabaseLoader> patientFromFile;
+	std::unique_ptr<AbstractPatientDatabaseLoader> patientLoader;
+
 };
 

@@ -10,6 +10,7 @@
 #include "PatientFileLoader.h"
 #include "GPNotificationSystemFacade.h"
 #include "HospitalAlertSystemFacade.h"
+#include "PatientLoader.h"
 
 using namespace std;
 
@@ -18,8 +19,15 @@ PatientManagementSystem::PatientManagementSystem() :
 	_patientDatabaseLoader(std::make_unique<PatientFileLoader>("patients.txt")),
 	_hospitalAlertSystem(std::make_unique<HospitalAlertSystemFacade>()),
 	_gpNotificationSystem(std::make_unique<GPNotificationSystemFacade>())
+
 {
 	_patientDatabaseLoader->initialiseConnection();
+	auto patientFromdatabase = std::make_unique<PatientDatabaseLoader>();
+	auto patientFromFile = std::make_unique<PatientFileLoader>("patients.txt");
+	vector<unique_ptr<AbstractPatientDatabaseLoader >> databaseAndFile;
+	databaseAndFile.push_back(std::move(patientFromdatabase));
+	databaseAndFile.push_back(std::move(patientFromFile));
+	_patientDatabaseLoader = std::make_unique<PatientLoader>(std::move(databaseAndFile));
 }
 
 PatientManagementSystem::~PatientManagementSystem()
