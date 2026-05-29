@@ -100,10 +100,6 @@ std::vector<Patient*> PatientFileLoader::loadPatientFile(const std::string& file
                 Vitals* patient_vitals = new Vitals(stof(stored_vitals[0]), stoi(stored_vitals[1]), stoi(stored_vitals[2]), stoi(stored_vitals[3]));
                 temp_patient->addVitals(patient_vitals);
             }
-            
-            
-            
-            
         }
         inFile.close();
     }
