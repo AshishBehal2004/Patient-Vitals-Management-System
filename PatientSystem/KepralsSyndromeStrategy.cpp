@@ -1,9 +1,10 @@
 #include "KepralsSyndromeStrategy.h"
 #include "PatientAlertLevels.h"
 #include "Vitals.h"
+#include "Patient.h"
 using namespace std;
 
-AlertLevel KepralsSyndromeStrategy::calculateAlertlevel(Patient patient ) {
+AlertLevel KepralsSyndromeStrategy::calculateAlertlevel(const Patient& patient ) {
 
     vector <const Vitals*> v = patient.vitals();
 

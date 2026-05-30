@@ -3,6 +3,6 @@
 
 class CordycepsBrainInfectionStrategy : public AbstractAlertLevelStrategy
 {
-    virtual AlertLevel calculateAlertlevel(Patient patient) override;
+    virtual AlertLevel calculateAlertlevel(const Patient& patient) override;
 };
 

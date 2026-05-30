@@ -1,10 +1,12 @@
 #pragma once
-#include "Patient.h"
+
 #include "PatientAlertLevels.h"
+class Patient;
 class AbstractAlertLevelStrategy
 {
 
 public:
-    virtual AlertLevel calculateAlertlevel(Patient patient) = 0;  
+    virtual AlertLevel calculateAlertlevel(const Patient& patient) = 0;  
+    virtual ~AbstractAlertLevelStrategy() = default;
 };
 

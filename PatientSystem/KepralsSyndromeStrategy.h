@@ -2,6 +2,6 @@
 #include "AbstractAlertLevelStrategy.h"
 class KepralsSyndromeStrategy : public AbstractAlertLevelStrategy
 {
-    AlertLevel calculateAlertlevel(Patient patient) override;
+    AlertLevel calculateAlertlevel(const Patient& patient) override;
 };
 

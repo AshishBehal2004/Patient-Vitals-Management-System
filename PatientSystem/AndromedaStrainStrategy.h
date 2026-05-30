@@ -2,6 +2,6 @@
 #include "AbstractAlertLevelStrategy.h"
 class AndromedaStrainStrategy : public AbstractAlertLevelStrategy
 {
-    AlertLevel calculateAlertlevel(Patient patient) override;
+    AlertLevel calculateAlertlevel(const Patient& patient) override;
 };
 

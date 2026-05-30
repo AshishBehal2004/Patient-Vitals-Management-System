@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "PatientAlertLevels.h"
-
+#include "AbstractAlertLevelStrategy.h"
 
 // forward declare classes
 class Vitals;
@@ -53,5 +53,9 @@ protected:
 	AlertLevel _alertLevel;
 
 	friend std::ostream& operator<<(std::ostream& os, const Patient& p);
+
+private:
+	AbstractAlertLevelStrategy* strategy = nullptr;
+
 };
 
