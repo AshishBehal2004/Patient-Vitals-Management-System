@@ -1,7 +1,19 @@
 #include "KepralsSyndromeStrategy.h"
 #include "PatientAlertLevels.h"
+#include "Vitals.h"
 using namespace std;
 
-AlertLevel KepralsSyndromeStrategy::calculateAlertlevel(Vitals vitals) {
+AlertLevel KepralsSyndromeStrategy::calculateAlertlevel(Patient patient ) {
 
+    vector <const Vitals*> v = patient.vitals();
+
+    if (patient.age() < 12 && v[v.size() - 1]->HR() > 120) {
+        return AlertLevel::Red;
+    }
+    else if (patient.age() >= 12 && v[v.size() - 1]->HR() > 100) {
+        return AlertLevel::Red;
+    }
+    else {
+        return AlertLevel::Green;
+    }
 }
