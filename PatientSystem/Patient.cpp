@@ -63,15 +63,12 @@ void Patient::addDiagnosis(const std::string& diagnosis)
 {	
 	_diagnosis.push_back(diagnosis);
 	if (diagnosis == Diagnosis::CORDYCEPS_BRAIN_INFECTION) {
-		cout << "strategy assigned1";
 		strategy = new CordycepsBrainInfectionStrategy;
 	}
 	else if (diagnosis == Diagnosis::ANDROMEDA_STRAIN) {
-		cout << "strategy assigned2";
 		strategy = new AndromedaStrainStrategy;
 	}
 	else if (diagnosis == Diagnosis::KEPRALS_SYNDROME) {
-		cout << "strategy assigned3";
 		strategy = new KepralsSyndromeStrategy;
 	}
 }
@@ -115,4 +112,14 @@ void Patient::setAlertLevel(AlertLevel level)
 		}
 		cout << endl;
 	}
+	if (_alertLevel == AlertLevel::Red) {
+		for (int i = 0; i < observers.size(); i++) {
+			observers[i]->sendAlertForPatient(this);
+		}
+	}
+
+}
+
+void Patient::addObservers(AlertLevelObserver* observer) {
+	observers.push_back(observer);
 }

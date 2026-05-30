@@ -18,3 +18,7 @@ void GPNotificationSystemFacade::sendGPNotificationForPatient(Patient* p)
 		std::cout << "Patient: " << p->humanReadableID() << " should be followed up" << std::endl;
 	}
 }
+
+void GPNotificationSystemFacade::sendAlertForPatient(Patient* p) {
+	sendGPNotificationForPatient(p);
+}

@@ -156,6 +156,7 @@
   <ItemGroup>
     <ClInclude Include="AbstractAlertLevelStrategy.h" />
     <ClInclude Include="AbstractPatientDatabaseLoader.h" />
+    <ClInclude Include="AlertLevelObserver.h" />
     <ClInclude Include="AndromedaStrainStrategy.h" />
     <ClInclude Include="CordycepsBrainInfectionStrategy.h" />
     <ClInclude Include="GPNotificationSystemFacade.h" />

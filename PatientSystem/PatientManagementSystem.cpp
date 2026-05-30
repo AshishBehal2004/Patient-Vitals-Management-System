@@ -46,9 +46,11 @@ void PatientManagementSystem::init()
 	for (Patient* p : _patients) {
 		_patientLookup[p->uid()] = p;
 	}
-
+	
 	for (Patient* p : _patients) {
 		// TODO: do any processing you need here
+		p->addObservers(_hospitalAlertSystem.get());
+		p->addObservers(_gpNotificationSystem.get());
 	}
 }
 

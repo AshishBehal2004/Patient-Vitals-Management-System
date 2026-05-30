@@ -101,5 +101,8 @@
     <ClInclude Include="AndromedaStrainStrategy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AlertLevelObserver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
