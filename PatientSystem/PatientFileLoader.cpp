@@ -98,7 +98,7 @@ std::vector<Patient*> PatientFileLoader::loadPatientFile(const std::string& file
             
             if (temp_record.size() > 4 && !temp_record[4].empty()) {
                 Vitals* patient_vitals = new Vitals(stof(stored_vitals[0]), stoi(stored_vitals[1]), stoi(stored_vitals[2]), stoi(stored_vitals[3]));
-                temp_patient->addVitals(patient_vitals);
+                temp_patient->addVitals(patient_vitals, true);
             }
         }
         inFile.close();

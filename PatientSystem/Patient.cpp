@@ -86,14 +86,13 @@ const std::string& Patient::primaryDiagnosis() const
 	return _diagnosis.front();
 }
 
-void Patient::addVitals(const Vitals* v)
+void Patient::addVitals(const Vitals* v, bool isHistorical)
 {
 	_vitals.push_back(v);
-
-	AlertLevel calculated_alertLevel = strategy->calculateAlertlevel(*this);
-
-	setAlertLevel(calculated_alertLevel);
-	
+	if (!isHistorical) {
+		AlertLevel calculated_alertLevel = strategy->calculateAlertlevel(*this);
+		setAlertLevel(calculated_alertLevel);
+	}
 }
 
 const std::vector<const Vitals*> Patient::vitals() const

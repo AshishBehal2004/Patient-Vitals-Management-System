@@ -111,7 +111,7 @@ void PatientManagementSystem::addVitalsRecord()
 		cin >> respitoryRate;
 
 		Vitals* v = new Vitals(bodyTemperature, bloodPressure, heartRate, respitoryRate);
-		_patientLookup[pid]->addVitals(v);
+		_patientLookup[pid]->addVitals(v, false);
 	}
 	else {
 		cout << "Patient not found" << endl;
