@@ -23,6 +23,10 @@ Patient::Patient(const std::string& firstName, const std::string& lastName, std:
 {
 }
 
+Patient::~Patient() {
+	delete strategy;
+}
+
 int Patient::age() const
 {	
 	// an inaccurate age estimate but fine for assignment purposes
@@ -63,14 +67,18 @@ void Patient::addDiagnosis(const std::string& diagnosis)
 {	
 	_diagnosis.push_back(diagnosis);
 	if (diagnosis == Diagnosis::CORDYCEPS_BRAIN_INFECTION) {
+		delete strategy;
 		strategy = new CordycepsBrainInfectionStrategy;
 	}
 	else if (diagnosis == Diagnosis::ANDROMEDA_STRAIN) {
+		delete strategy;
 		strategy = new AndromedaStrainStrategy;
 	}
 	else if (diagnosis == Diagnosis::KEPRALS_SYNDROME) {
+		delete strategy;
 		strategy = new KepralsSyndromeStrategy;
 	}
+
 }
 
 const std::string& Patient::primaryDiagnosis() const
@@ -85,7 +93,7 @@ void Patient::addVitals(const Vitals* v)
 	AlertLevel calculated_alertLevel = strategy->calculateAlertlevel(*this);
 
 	setAlertLevel(calculated_alertLevel);
-
+	
 }
 
 const std::vector<const Vitals*> Patient::vitals() const
@@ -98,7 +106,7 @@ void Patient::setAlertLevel(AlertLevel level)
 	_alertLevel = level;
 
 	if (_alertLevel > AlertLevel::Green) {
-		cout << "Patient: " << humanReadableID() << "has an alert level: ";
+		cout << "Patient: " << humanReadableID() << " has an alert level: ";
 		switch (_alertLevel) {
 		case AlertLevel::Yellow:
 			cout << "Yellow";
