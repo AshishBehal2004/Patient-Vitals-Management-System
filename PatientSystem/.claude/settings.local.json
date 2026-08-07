@@ -1,7 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\ASUS\\\\Documents\\\\Assignment_2_Cpp\\\\dpcpp-2026-ass2-clean-v4\" -Recurse -ErrorAction SilentlyContinue | Where-Object { $_.Extension -eq \".exe\" -or $_.Extension -eq \".sln\" -or $_.Extension -eq \".vcxproj\" } | Select-Object FullName, LastWriteTime)"
-    ]
-  }
-}
